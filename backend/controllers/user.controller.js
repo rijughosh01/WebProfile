@@ -58,7 +58,7 @@ export const register = async (req, res) => {
       message: "User registered successfully",
     });
   } catch (error) {
-    return res.status(500).json({ message: "Server error" });
+    return res.status(500).json({ message: error.message });
   }
 };
 
@@ -79,9 +79,9 @@ export const login = async (req, res) => {
       return res.status(400).json({ message: "Invalid credentials" });
     const token = crypto.randomBytes(32).toString("hex");
     await User.updateOne({ _id: user._id }, { token });
-    return res.json({ token });
+    return res.json({ token: token });
   } catch (error) {
-    return res.status(500).json({ message: "Server error" });
+    return res.status(500).json({ message: error.message });
   }
 };
 
