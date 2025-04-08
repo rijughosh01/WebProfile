@@ -1,0 +1,159 @@
+.container {
+  display: flex;
+  justify-content: center;
+  height: 90svh;
+  align-items: center;
+  background: snow;
+}
+
+.cardContainer {
+  height: 80vh;
+  display: flex;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 150vh;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 10px 10px 20px rgba(173, 173, 173);
+}
+
+.cardContainer_left {
+  flex: 0.6;
+  padding: 2rem;
+  text-align: center;
+}
+.cardLeft_heading {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1c375f;
+}
+
+.inputField {
+  padding: 2.4rem;
+  padding-block: 0.9rem;
+  outline: none;
+  border-radius: 10px;
+  border: 1px solid rgb(135, 184, 169);
+  width: 100%;
+  font-size: 1rem;
+}
+
+.inputContainers {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1.3rem;
+  max-width: 400px;
+  margin: 0 auto;
+  gap: 1.3rem;
+}
+
+.inputRow {
+  width: fit-content;
+  display: flex;
+  gap: 1.2rem;
+}
+
+.buttonWithOutline {
+  position: relative;
+  padding: 0.8rem 1.3rem;
+  width: 100%;
+  background: linear-gradient(
+    45deg,
+    rgba(142, 190, 176, 1),
+    rgba(112, 156, 139, 1)
+  );
+  font-size: 1.3rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  overflow: hidden;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(
+    45deg,
+    rgba(142, 190, 176, 1),
+    rgba(112, 156, 139, 1)
+  );
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.buttonWithOutline:hover {
+  background: linear-gradient(
+    45deg,
+    rgba(112, 156, 139, 1),
+    rgba(142, 190, 176, 1)
+  );
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(142, 190, 176, 0.8),
+    0 0 20px rgba(112, 156, 139, 0.6);
+}
+
+.buttonWithOutline:active::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  animation: ripple 0.6s ease-out;
+  pointer-events: none;
+}
+
+.buttonWithOutline:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.buttonWithOutline::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    rgba(142, 190, 176, 1),
+    rgba(112, 156, 139, 1)
+  );
+  z-index: -1;
+  transition: transform 0.3s ease;
+}
+
+.buttonWithOutline:hover::after {
+  transform: rotate(45deg);
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes ripple {
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+}
+
+.cardContainer_right {
+  flex: 0.4;
+  background: #9ce9e5;
+  display: flex;
+  color: rgb(61, 63, 65);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding-inline: 1.2rem;
+}
