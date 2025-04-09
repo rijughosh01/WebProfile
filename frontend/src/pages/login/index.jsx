@@ -107,7 +107,7 @@ function LoginComponent() {
             {userLoginMethod ? (
               <p>Don't Have an Account</p>
             ) : (
-              <p>Already Have an Accunt</p>
+              <p>Already Have an Account</p>
             )}
             <div
               onClick={() => {

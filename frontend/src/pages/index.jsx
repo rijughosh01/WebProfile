@@ -11,23 +11,28 @@ export default function Home() {
   const router = useRouter();
   return (
     <UserLayout>
-     <div className={styles.container}>
-      <div className={styles.mainContainer}>
-        <div className={styles.mainContainer_left}>
-          <p>Connect with friend</p>
-          <p>and the world around you</p>
+      <div className={styles.container}>
+        <div className={styles.mainContainer}>
+          <div className={styles.mainContainer_left}>
+            <p>Connect with friends and grow your network</p>
+            <p>
+              Discover people, opportunities, and conversations that matter.
+            </p>
 
-          <div onClick={() => {
-            router.push("/login");
-          }} className={styles.buttonJoin}>
-            <p>Join Now</p>
+            <div
+              onClick={() => {
+                router.push("/login");
+              }}
+              className={styles.buttonJoin}
+            >
+              <p>Join Now</p>
+            </div>
+          </div>
+          <div className={styles.mainContainer_right}>
+            <img src="image/Home.jpg" alt="" />
           </div>
         </div>
-        <div className={styles.mainContainer_right}>
-          <img src="image/Home.jpg" alt=""/>
-        </div>
       </div>
-     </div>
     </UserLayout>
   );
 }

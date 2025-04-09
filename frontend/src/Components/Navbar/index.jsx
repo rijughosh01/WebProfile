@@ -8,12 +8,13 @@ export default function NavbarComponent() {
     <div className={styles.container}>
       <nav className={styles.navBar}>
         <h1
+          className={styles.homeHeading}
           style={{ cursor: "pointer" }}
           onClick={() => {
             router.push("/");
           }}
         >
-          Pro Connect
+          <img src="image/Logo2.png" alt=""></img>
         </h1>
         <div className={styles.navBarOptionContainer}>
           <div

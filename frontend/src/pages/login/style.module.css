@@ -33,7 +33,7 @@
   padding-block: 0.9rem;
   outline: none;
   border-radius: 10px;
-  border: 1px solid rgb(135, 184, 169);
+  border: 1px solid rgb(102, 143, 130);
   width: 100%;
   font-size: 1rem;
 }
@@ -148,12 +148,17 @@
 
 .cardContainer_right {
   flex: 0.4;
-  background: #9ce9e5;
+  background: linear-gradient(
+    45deg,
+    rgb(4, 78, 75),
+    rgb(132, 197, 172)
+  );
   display: flex;
-  color: rgb(61, 63, 65);
+  color: rgb(49, 50, 51);
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 1.2rem;
   padding-inline: 1.2rem;
+  font-size: 1.6rem;
 }

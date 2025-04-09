@@ -1,23 +1,37 @@
 .container {
-    padding: 1.2rem;
+  padding: 1.2rem;
 }
 
 .navBar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 6.4vh;
 }
 
 .navBarOptionContainer {
-    display: flex;
+  display: flex;
 }
 
 .buttonJoin {
-    background-color: rgb(145, 211, 189);
-    border-radius: 10px;
-    padding-block: 0.6rem;
-    padding-inline: 1.2rem;
-    color: rgb(7, 7, 7);
-    cursor: pointer;
-    font-size: 0.9rem;
+  background-color: rgb(145, 211, 189);
+  border-radius: 10px;
+  padding-block: 0.6rem;
+  padding-inline: 1.2rem;
+  color: rgb(7, 7, 7);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.homeHeading {
+  font-size: 1.8rem;
+  transition: transform 0.2s ease-in-out;
+}
+
+.homeHeading:hover {
+  transform: scale(1.02);
+}
+
+.homeHeading img {
+  height: 140px;
 }
