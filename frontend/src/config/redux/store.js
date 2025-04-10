@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./reducer/authReducer";
+import postReducer from "./reducer/postReducer";
 
 /**
  * STEPS for State Management
@@ -11,5 +12,6 @@ import authReducer from "./reducer/authReducer";
 export const store = configureStore({
   reducer: {
     auth: authReducer,
+    posts: postReducer,
   },
 });
