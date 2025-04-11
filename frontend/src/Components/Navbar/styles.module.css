@@ -25,13 +25,22 @@
 
 .homeHeading {
   font-size: 1.8rem;
-  transition: transform 0.2s ease-in-out;
-}
-
-.homeHeading:hover {
-  transform: scale(1.02);
 }
 
 .homeHeading img {
   height: 140px;
+}
+
+
+.logout{
+  background-color: rgb(161, 198, 211);
+  border-radius: 10px;
+  padding-block: 0.6rem;
+  padding-inline: 1.2rem;
+  color: rgb(7, 7, 7);
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-top: -0.7rem;
+  margin-left: 1rem;
+  margin-right: 0.6rem;
 }
