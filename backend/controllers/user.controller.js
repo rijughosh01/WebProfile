@@ -4,6 +4,8 @@ import crypto from "crypto";
 import bcrypt from "bcrypt";
 import PDFDocument from "pdfkit";
 import fs from "fs";
+import Post from "../models/posts.model.js";
+import ConnectionRequest from "../models/connections.model.js"
 
 const convertUserDataToPDF = async (userData) => {
   const doc = new PDFDocument();
