@@ -1,0 +1,26 @@
+.container {
+  padding: 1.3rem;
+  background: rgb(240, 241, 241);
+  border-radius: 10px;
+}
+
+.backDropContainer {
+  width: 100%;
+  height: 30vh;
+  background: url("https://images.pexels.com/photos/29440473/pexels-photo-29440473/free-photo-of-scenic-autumn-drive-through-ontario-s-vibrant-foliage.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  border-radius: 20px;
+}
+
+.backDropContainer img {
+  width: 10em;
+  height: 10em;
+  object-fit: cover;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -30%;
+  left: 8%;
+  text-align: center;
+}

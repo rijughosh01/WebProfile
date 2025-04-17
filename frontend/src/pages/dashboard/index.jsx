@@ -298,7 +298,7 @@ export default function Dashboard() {
                               >
                                 {comment.userId.name}
                               </p>
-                              <p>@{comment.userId.username}</p>
+                              {/* <p>@{comment.userId.username}</p> */}
                             </div>
                           </div>
                           <p>{comment.body}</p>
@@ -326,6 +326,7 @@ export default function Dashboard() {
                       await dispatch(
                         getAllComments({ post_id: postState.postId })
                       );
+                      setCommentText("");
                     }}
                     className={styles.postCommentsContainer_commentBtn}
                   >

@@ -124,6 +124,26 @@
   width: 13%;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 .commentContainer {
   position: fixed;
   width: 100vw;
@@ -131,20 +151,48 @@
   top: 0;
   left: 0;
   z-index: 2;
-  background: rgb(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.6);
   overflow: hidden;
   justify-content: center;
   display: flex;
   align-items: center;
+  animation: fadeIn 0.3s ease-in-out;
 }
 
 .allCommentsContainer {
   width: 40vw;
   height: 80vh;
-  background: wheat;
+  background: #f8f9fa;
   border-radius: 10px;
   position: relative;
   padding: 1.4rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.4s ease-in-out;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+}
+
+.singleComment {
+  background-color: #dee9ec;
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 0.8rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.singleComment:hover {
+  transform: scale(1.02);
+}
+
+.singleComment_profileContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .postCommentsContainer {
@@ -155,30 +203,37 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.2rem;
+  gap: 1rem;
 }
 
 .postCommentsContainer > input {
-  flex: 0.9;
+  flex: 1;
   padding-inline: 1.5rem;
   padding-block: 1.2rem;
   border: none;
   outline: none;
-  background-color: lightgoldenrodyellow;
+  background-color: #edf6f9;
   border-radius: 10px;
+  font-size: 1rem;
+  transition: border 0.3s ease, background-color 0.3s ease;
 }
 
 .postCommentsContainer > input:focus {
-  border: 1px solid rgb(104, 101, 101);
+  border: 1px solid #90c8e0;
+  background-color: #e1f3f9;
 }
 
 .postCommentsContainer_commentBtn {
-  flex: 0.1;
-  width: fit-content;
-  padding: 1rem;
-  background: rgb(60, 126, 143);
+  padding: 0.9rem 1.4rem;
+  background: #90c8e0;
   border-radius: 10px;
-  text-align: center;
   color: white;
+  font-weight: bold;
   cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.postCommentsContainer_commentBtn:hover {
+  background: #5baac5;
+  transform: scale(1.05);
 }

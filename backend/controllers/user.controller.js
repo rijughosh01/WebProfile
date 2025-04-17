@@ -5,7 +5,7 @@ import bcrypt from "bcrypt";
 import PDFDocument from "pdfkit";
 import fs from "fs";
 import Post from "../models/posts.model.js";
-import ConnectionRequest from "../models/connections.model.js"
+import ConnectionRequest from "../models/connections.model.js";
 
 const convertUserDataToPDF = async (userData) => {
   const doc = new PDFDocument();
@@ -282,5 +282,26 @@ export const acceptConnectionRequest = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({ message: error.message });
+  }
+};
+
+export const getUserProfileAndBasedOnUsername = async (req, res) => {
+  const { username } = req.query;
+
+  try {
+    const user = await User.findOne({
+      username,
+    });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    const userProfile = await Profile.findOne({ userId: user._id }).populate(
+      "userId",
+      "name username email profilePicture"
+    );
+
+    return res.json({ profile: userProfile });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
   }
 };
