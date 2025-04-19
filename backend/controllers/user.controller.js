@@ -6,28 +6,64 @@ import PDFDocument from "pdfkit";
 import fs from "fs";
 import Post from "../models/posts.model.js";
 import ConnectionRequest from "../models/connections.model.js";
+import sharp from "sharp";
+import path from "path";
 
 const convertUserDataToPDF = async (userData) => {
-  const doc = new PDFDocument();
+  const doc = new PDFDocument({ margin: 50 });
   const outputPath = crypto.randomBytes(32).toString("hex") + ".pdf";
   const stream = fs.createWriteStream("uploads/" + outputPath);
   doc.pipe(stream);
-  doc.image(`uploads/${userData.userId.profilePicture}`, {
-    align: "center",
-    width: 100,
-  });
-  doc.fontSize(14).text(`Name: ${userData.userId.name}`);
-  doc.fontSize(14).text(`Email: ${userData.userId.email}`);
-  doc.fontSize(14).text(`Username: ${userData.userId.username}`);
-  doc.fontSize(14).text(`Bio: ${userData.bio}`);
-  doc.fontSize(14).text(`Current Position: ${userData.currentPost}`);
+  
+  const originalImagePath = path.join(
+    "uploads",
+    userData.userId.profilePicture
+  );
+  const imageExt = path.extname(userData.userId.profilePicture);
+  const convertedImagePath = originalImagePath.replace(imageExt, ".png");
 
-  doc.fontSize(14).text("Past Work: ");
-  userData.pastWork.forEach((work, index) => {
-    doc.fontSize(14).text(`Company Name: ${work.company}`);
-    doc.fontSize(14).text(`Position: ${work.position}`);
-    doc.fontSize(14).text(`Years: ${work.years}`);
-  });
+  try {
+    await sharp(originalImagePath).png().toFile(convertedImagePath);
+
+    doc.image(convertedImagePath, doc.page.width / 2 - 60, doc.y, {
+      fit: [120, 120],
+      align: "center",
+      valign: "center",
+    });
+
+    doc.moveDown(2);
+  } catch (err) {
+    console.error("Image conversion failed:", err);
+  }
+
+  doc.fontSize(14).fillColor("#333");
+
+  doc.text(`Name: ${userData.userId.name}`);
+  doc.text(`Email: ${userData.userId.email}`);
+  doc.text(`Username: ${userData.userId.username}`);
+  doc.text(`Bio: ${userData.bio || "N/A"}`);
+  doc.text(`Current Position: ${userData.currentPost || "N/A"}`);
+
+  doc
+    .moveDown()
+    .fontSize(16)
+    .fillColor("#000")
+    .text("Past Work:", { underline: true });
+
+  if (userData.pastWork && userData.pastWork.length > 0) {
+    userData.pastWork.forEach((work) => {
+      doc
+        .fontSize(14)
+        .fillColor("#333")
+        .text(`• Company: ${work.company}`)
+        .text(`  Position: ${work.position}`)
+        .text(`  Years: ${work.years}`)
+        .moveDown(0.5);
+    });
+  } else {
+    doc.fontSize(14).text("No past work experience available.");
+  }
+
   doc.end();
   return outputPath;
 };
@@ -182,7 +218,7 @@ export const getAllUserProfile = async (req, res) => {
 
 export const downloadProfile = async (req, res) => {
   try {
-    const user_id = req.params.id;
+    const user_id = req.query.id;
     console.log("Requested user_id:", user_id);
     const userProfile = await Profile.findOne({ userId: user_id }).populate(
       "userId",
