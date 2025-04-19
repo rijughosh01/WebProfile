@@ -1,6 +1,6 @@
 .container {
   padding: 1.3rem;
-  background: rgb(240, 241, 241);
+  /* background: rgb(240, 241, 241); */
   border-radius: 10px;
 }
 
@@ -23,4 +23,56 @@
   bottom: -30%;
   left: 8%;
   text-align: center;
+}
+
+.profileContainer_deatails {
+  padding-top: 4.6rem;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 5.4rem;
+}
+
+.postcard {
+  margin-bottom: 0.6rem;
+}
+
+.card_profileContainer {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.card_profileContainer > img {
+  width: 4.6rem;
+  height: auto;
+  height: 3.7rem;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid rgb(223, 196, 147);
+}
+.card_body P {
+  margin: 0;
+  font-size: 0.9rem;
+}
+.connectBtn {
+  padding-inline: 0.8rem;
+  padding-block: 0.3rem;
+  background: rgb(3, 93, 183, 0.905);
+  outline: none;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.connectedButton {
+  padding-inline: 0.8rem;
+  padding-block: 0.3rem;
+  border: 1px solid silver;
+  outline: none;
+  color: rgb(3, 93, 183, 0.905);
+  border-radius: 10px;
+  cursor: pointer;
 }

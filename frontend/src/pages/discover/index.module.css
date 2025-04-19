@@ -9,11 +9,19 @@
 .usercard {
   display: flex;
   gap: 1.2rem;
-  cursor: pointer;
   padding: 1.3rem;
   align-items: center;
+  border-radius: 10px;
+  cursor: pointer;
+  background: linear-gradient(145deg, #e0e0e0, #cfcfcf);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.usercard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
 }
 
 .userCard_image {
