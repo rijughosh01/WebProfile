@@ -285,7 +285,7 @@ export const getMyConnectionRequests = async (req, res) => {
 };
 
 export const whatAreMyConnections = async (req, res) => {
-  const { token } = req.body;
+  const { token } = req.query;
   try {
     const user = await User.findOne({ token });
     if (!user) return res.status(404).json({ message: "User not found" });
@@ -308,9 +308,9 @@ export const acceptConnectionRequest = async (req, res) => {
       return res.status(404).json({ message: "Connection request not found" });
     }
     if (action_type === "accept") {
-      connection.status_acceptd = true;
+      connection.status_accepted = true;
     } else {
-      connection.status_acceptd = false;
+      connection.status_accepted = false;
     }
     await connection.save();
     return res.json({

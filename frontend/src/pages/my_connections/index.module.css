@@ -1,0 +1,89 @@
+.userCard {
+  display: flex;
+  width: 100%;
+  padding: 1.2rem;
+  gap: 1.5rem;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 1.2rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.userCard:hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 12px 35px rgba(99, 102, 241, 0.15);
+}
+
+.userCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(120deg, #f0f4ff, #e0e7ff, #f0f4ff);
+  opacity: 0;
+  z-index: -1;
+  transition: all 0.4s ease;
+}
+
+.userCard:hover::before {
+  left: 0;
+  opacity: 1;
+}
+
+.profilePicture {
+  z-index: 1;
+  position: relative;
+}
+
+.profilePicture img {
+  width: 55px;
+  height: 55px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #e5e7eb;
+  transition: border-color 0.3s ease;
+}
+
+.userInfo {
+  flex-grow: 1;
+  z-index: 1;
+}
+
+.userInfo h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0;
+  color: #1f2937;
+}
+
+.userInfo p {
+  margin: 0.1rem 0 0;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.connectedButton {
+  padding: 0.55rem 1.2rem;
+  background: linear-gradient(to right, #6366f1, #4f46e5);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1;
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+}
+
+.connectedButton:hover {
+  background: linear-gradient(to right, #4f46e5, #3730a3);
+  box-shadow: 0 6px 15px rgba(79, 70, 229, 0.5);
+}
