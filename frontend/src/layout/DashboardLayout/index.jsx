@@ -111,6 +111,10 @@ export default function DashboardLayout({ children }) {
           </div>
         </div>
       </div>
+
+      <div className={styles.mobileNavbar}>
+              <div className={styles.singleNavItemHolder}></div>
+      </div>
     </div>
   );
 }

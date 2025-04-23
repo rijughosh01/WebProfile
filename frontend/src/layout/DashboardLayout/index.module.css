@@ -47,3 +47,17 @@
 .homeContainer_feedContainer {
   padding-inline: 1rem;
 }
+
+
+@media only screen and (max-width: 600px) {
+  .homeContainer_extraContainer{
+    display: none;
+  }
+
+  .homeContainer{
+    display: block;
+  }
+  .homeContainer_leftBar{
+    display: none;
+  }
+}

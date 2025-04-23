@@ -122,6 +122,7 @@
 .singleOption_optionsContainer > svg {
   height: 100%;
   width: 13%;
+  min-width: 1rem;
 }
 
 @keyframes fadeIn {
@@ -236,4 +237,13 @@
 .postCommentsContainer_commentBtn:hover {
   background: #5baac5;
   transform: scale(1.05);
+}
+
+
+
+@media only screen and (max-width: 600px) {
+  .allCommentsContainer {
+    width: 90%;
+    
+  }
 }
