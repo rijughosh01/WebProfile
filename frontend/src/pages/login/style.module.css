@@ -162,3 +162,10 @@
   padding-inline: 1.2rem;
   font-size: 1.6rem;
 }
+
+
+@media only screen and (max-width: 600px){
+  .cardContainer {
+    flex-direction: column;
+  }
+}
