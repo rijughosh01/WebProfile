@@ -228,6 +228,29 @@ export default function ViewProfilePage({ userProfile }) {
               })}
             </div>
           </div>
+          <div className="educationHistory">
+            <h4>Education Qualification</h4>
+
+            <div className={styles.educationHistoryContainer}>
+              {userProfile.education.map((edu, index) => {
+                return (
+                  <div key={index} className={styles.educationHistoryCard}>
+                    <p
+                      style={{
+                        fontWeight: "bold",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.8rem",
+                      }}
+                    >
+                      {edu.school} - {edu.degree}
+                    </p>
+                    <p>{edu.fieldOfStudy}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </DashboardLayout>
     </UserLayout>

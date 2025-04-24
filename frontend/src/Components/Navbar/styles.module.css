@@ -31,16 +31,34 @@
   height: 140px;
 }
 
+.profileIcon {
+  width: 2rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
 
-.logout{
+.profileIcon:hover {
+  transform: scale(1.2);
+}
+
+
+.logout {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   background-color: rgb(161, 198, 211);
   border-radius: 10px;
-  padding-block: 0.6rem;
-  padding-inline: 1.2rem;
+  padding-block: 0.1rem;
+  padding-inline: 1rem;
   color: rgb(7, 7, 7);
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   margin-top: -0.7rem;
   margin-left: 1rem;
   margin-right: 0.6rem;
+  transition: background-color 0.3s ease;
+}
+
+.logout:hover {
+  background-color: rgb(141, 178, 191); 
 }

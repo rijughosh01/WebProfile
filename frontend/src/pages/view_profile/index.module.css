@@ -102,6 +102,35 @@
   gap: 0.7rem;
 }
 
+.educationHistoryContainer {
+  display: flex;
+  gap: 1.4rem;
+  padding-top: 1.4rem;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.educationHistoryCard {
+  min-width: fit-content;
+  padding-inline: 2.5rem;
+  padding-block: 0.6rem;
+  border-radius: 10px;
+  box-shadow: 10px 10px 15px rgb(173, 173, 173);
+  background: #ffffff;
+}
+
+.educationHistoryCard p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.educationHistoryCard p:first-child {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
 @media only screen and (max-width: 600px) {
   .profileContainer_flex {
     flex-direction: column;

@@ -138,24 +138,26 @@
   width: fit-content;
 }
 
-
-.nameEdit{
-font-size: 1.5rem;
-font-weight: bold;
+.nameEdit {
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
-.updateProfileBtn{
-  padding-inline: 0.8rem;
-  padding-block: 0.3rem;
-  background: rgb(3, 93, 183, 0.905);
-  outline: none;
-  border: none;
+.updateProfileBtn {
+  background: #007bff;
   color: white;
-  border-radius: 10px;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
   cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease;
   width: fit-content;
 }
 
+.updateProfileBtn:hover {
+  background: #0056b3;
+}
 
 .profileContainer_deatails textarea {
   outline: none;
@@ -166,8 +168,7 @@ font-weight: bold;
   font-size: 1rem;
 }
 
-
-.addWorkButton{
+.addWorkButton {
   padding-inline: 1.3rem;
   background: white;
   border: 1px dotted silver;
@@ -175,16 +176,6 @@ font-weight: bold;
   cursor: pointer;
   padding-block: 1.2rem;
 }
-
-
-
-
-
-
-
-
-
-
 
 @keyframes fadeIn {
   from {
@@ -237,7 +228,6 @@ font-weight: bold;
   overflow-y: auto;
 }
 
-
 .inputField {
   padding: 2.4rem;
   padding-block: 0.9rem;
@@ -246,4 +236,29 @@ font-weight: bold;
   border: 1px solid rgb(102, 143, 130);
   width: 100%;
   font-size: 1rem;
+}
+
+.educationHistoryContainer {
+  display: flex;
+  gap: 1.4rem;
+  padding-top: 1.4rem;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.educationHistoryCard {
+  min-width: fit-content;
+  padding-inline: 2.5rem;
+  padding-block: 1rem;
+  border-radius: 10px;
+  box-shadow: 10px 10px 15px rgb(173, 173, 173);
+}
+
+.addEducationButton {
+  padding-inline: 1.3rem;
+  background: white;
+  border: 1px dotted silver;
+  border-radius: 10px;
+  cursor: pointer;
+  padding-block: 1.2rem;
 }
