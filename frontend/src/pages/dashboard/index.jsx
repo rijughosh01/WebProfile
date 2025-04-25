@@ -115,8 +115,9 @@ export default function Dashboard() {
                       <div className={styles.singleCard_profileContainer}>
                         <img
                           className={styles.userProfile}
-                          src={`${BASE_URL}/${authState.user.userProfile.userId.profilePicture}`}
-                        ></img>
+                          src={`${BASE_URL}/${post.userId.profilePicture}`}
+                          alt={`${post.userId.name}'s profile`}
+                        />
                         <div>
                           <div
                             style={{
@@ -171,8 +172,14 @@ export default function Dashboard() {
                           <p style={{ paddingTop: "1.3rem" }}>{post.body}</p>
 
                           <div className={styles.singleCard_image}>
-                            {post.media !== "" ? <img src={`${BASE_URL}/${post.media}`} /> : <></>}
-                            
+                            {post.media !== "" ? (
+                              <img
+                                src={`${BASE_URL}/${post.media}`}
+                                alt="Post media"
+                              />
+                            ) : (
+                              <></>
+                            )}
                           </div>
 
                           <div className={styles.optionsContainer}>

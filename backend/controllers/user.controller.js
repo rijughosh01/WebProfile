@@ -14,7 +14,7 @@ const convertUserDataToPDF = async (userData) => {
   const outputPath = crypto.randomBytes(32).toString("hex") + ".pdf";
   const stream = fs.createWriteStream("uploads/" + outputPath);
   doc.pipe(stream);
-  
+
   const originalImagePath = path.join(
     "uploads",
     userData.userId.profilePicture
@@ -25,43 +25,72 @@ const convertUserDataToPDF = async (userData) => {
   try {
     await sharp(originalImagePath).png().toFile(convertedImagePath);
 
-    doc.image(convertedImagePath, doc.page.width / 2 - 60, doc.y, {
-      fit: [120, 120],
-      align: "center",
+    doc.image(convertedImagePath, 50, 50, {
+      fit: [100, 100],
+      align: "left",
       valign: "center",
     });
-
-    doc.moveDown(2);
   } catch (err) {
     console.error("Image conversion failed:", err);
   }
 
-  doc.fontSize(14).fillColor("#333");
+  doc
+    .fontSize(20)
+    .fillColor("#333")
+    .text(userData.userId.name, 160, 50, { align: "left" })
+    .fontSize(12)
+    .fillColor("#555")
+    .text(`Email: ${userData.userId.email}`, 160, 80, { align: "left" })
+    .text(`Username: ${userData.userId.username}`, 160, 100, { align: "left" })
+    .text(`Bio: ${userData.bio || "N/A"}`, 160, 120, { align: "left" })
+    .text(`Current Position: ${userData.currentPost || "N/A"}`, 160, 140, {
+      align: "left",
+    });
 
-  doc.text(`Name: ${userData.userId.name}`);
-  doc.text(`Email: ${userData.userId.email}`);
-  doc.text(`Username: ${userData.userId.username}`);
-  doc.text(`Bio: ${userData.bio || "N/A"}`);
-  doc.text(`Current Position: ${userData.currentPost || "N/A"}`);
+  doc.moveDown(2);
 
   doc
-    .moveDown()
     .fontSize(16)
     .fillColor("#000")
-    .text("Past Work:", { underline: true });
+    .text("Past Work", { underline: true, align: "left" })
+    .moveDown(0.5);
 
   if (userData.pastWork && userData.pastWork.length > 0) {
     userData.pastWork.forEach((work) => {
       doc
-        .fontSize(14)
+        .fontSize(12)
         .fillColor("#333")
-        .text(`• Company: ${work.company}`)
-        .text(`  Position: ${work.position}`)
-        .text(`  Years: ${work.years}`)
+        .text(`• Company: ${work.company}`, { indent: 20 })
+        .text(`  Position: ${work.position}`, { indent: 40 })
+        .text(`  Years: ${work.years}`, { indent: 40 })
         .moveDown(0.5);
     });
   } else {
-    doc.fontSize(14).text("No past work experience available.");
+    doc.fontSize(12).text("No past work experience available.", { indent: 20 });
+  }
+
+  doc.moveDown(1);
+
+  doc
+    .fontSize(16)
+    .fillColor("#000")
+    .text("Education Qualification", { underline: true, align: "left" })
+    .moveDown(0.5);
+
+  if (userData.education && userData.education.length > 0) {
+    userData.education.forEach((edu) => {
+      doc
+        .fontSize(12)
+        .fillColor("#333")
+        .text(`• School: ${edu.school}`, { indent: 20 })
+        .text(`  Degree: ${edu.degree}`, { indent: 40 })
+        .text(`  Field of Study: ${edu.fieldOfStudy}`, { indent: 40 })
+        .moveDown(0.5);
+    });
+  } else {
+    doc
+      .fontSize(12)
+      .text("No education qualification available.", { indent: 20 });
   }
 
   doc.end();
