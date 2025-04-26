@@ -1,7 +1,7 @@
 import Post from "../models/posts.model.js";
 import Profile from "../models/profile.model.js";
 import User from "../models/user.model.js";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import Comment from "../models/comments.model.js";
 
 export const activeCheck = async (req, res) => {
