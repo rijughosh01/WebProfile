@@ -195,6 +195,9 @@
   margin-bottom: 0.8rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease;
+  position: relative;
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
 }
 
 .singleComment:hover {
@@ -256,6 +259,29 @@
   height: 50px;
   border-radius: 50%;
   object-fit: cover;
+}
+.singleComment:hover .deleteButton {
+  display: block;
+}
+
+.deleteButton {
+  display: none;
+  color: red;
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 0.9rem;
+  background: #fff;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid red;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.deleteButton:hover {
+  background: red;
+  color: #fff;
 }
 
 @media only screen and (max-width: 600px) {

@@ -1,6 +1,7 @@
 import { getAboutUser, getAllUsers } from "@/config/redux/action/authAction";
 import {
   createPost,
+  deleteComment,
   deletePost,
   getAllComments,
   getAllPosts,
@@ -310,6 +311,22 @@ export default function Dashboard() {
                             </div>
                           </div>
                           <p>{comment.body}</p>
+                          {authState.user.userProfile.userId._id ===
+                            comment.userId._id && (
+                            <div
+                              className={styles.deleteButton}
+                              onClick={async () => {
+                                await dispatch(
+                                  deleteComment({ comment_id: comment._id })
+                                );
+                                await dispatch(
+                                  getAllComments({ post_id: postState.postId })
+                                );
+                              }}
+                            >
+                              Delete
+                            </div>
+                          )}
                         </div>
                       );
                     })}
