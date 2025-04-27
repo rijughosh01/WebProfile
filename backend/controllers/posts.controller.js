@@ -10,6 +10,7 @@ export const activeCheck = async (req, res) => {
   });
 };
 
+
 export const createPost = async (req, res) => {
   const { token } = req.body;
   try {

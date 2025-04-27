@@ -48,14 +48,6 @@ export default function Dashboard() {
     dispatch(getAllPosts());
   };
 
-  // useState(() => {
-  //   setInterval(() => {
-  //     dispatch(getAllPosts());
-  //   }, 900);
-  // });
-
-  // console.log("authState.user", authState.user);
-
   if (authState.user) {
     return (
       <UserLayout>
