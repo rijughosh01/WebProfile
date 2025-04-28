@@ -28,9 +28,10 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (authState.isTokenThere) {
-      console.log("AUTH TOKEN");
-      dispatch(getAllPosts());
-      dispatch(getAboutUser({ token: localStorage.getItem("token") }));
+      Promise.all([
+        dispatch(getAllPosts()),
+        dispatch(getAboutUser({ token: localStorage.getItem("token") })),
+      ]);
     }
     if (!authState.all_profiles_fetched) {
       dispatch(getAllUsers());

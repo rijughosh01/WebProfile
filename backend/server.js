@@ -16,7 +16,12 @@ app.use(express.static("uploads"));
 
 const start = async () => {
   const connectDB = await mongoose.connect(
-    "mongodb+srv://rg7914579:k6JVQONtsZLhxCDK@linkedinclone.ukuocg3.mongodb.net/point?retryWrites=true&w=majority&appName=linkedinclone"
+    "mongodb+srv://rg7914579:k6JVQONtsZLhxCDK@linkedinclone.ukuocg3.mongodb.net/point?retryWrites=true&w=majority&appName=linkedinclone",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      poolSize: 10,
+    }
   );
 
   app.listen(9080, () => {

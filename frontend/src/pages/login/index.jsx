@@ -27,10 +27,10 @@ function LoginComponent() {
   }, [authState.loggedIn]);
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
+    if (localStorage.getItem("token") && !authState.loggedIn) {
       router.push("/dashboard");
     }
-  });
+  }, [authState.loggedIn]);
 
   useEffect(() => {
     dispath(emptyMessage());
@@ -41,9 +41,12 @@ function LoginComponent() {
     dispath(registerUser({ username, password, email, name }));
   };
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     console.log("Logging in user...");
-    dispath(loginUser({ email, password }));
+    await dispath(loginUser({ email, password }));
+    if (localStorage.getItem("token")) {
+      router.push("/dashboard");
+    }
   };
 
   return (
