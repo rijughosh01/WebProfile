@@ -153,11 +153,9 @@ export const login = async (req, res) => {
 export const uplodeProfilePicture = async (req, res) => {
   const { token } = req.body;
   try {
-    const user = await User.findOne({
-      token: token,
-    });
+    const user = await User.findOne({ token: token });
     if (!user) return res.status(404).json({ message: "User not found" });
-    user.profilePicture = req.file.filename;
+    user.profilePicture = req.file ? `uploads/${req.file.filename}` : "";
     await user.save();
     return res.json({
       message: "Profile picture uploaded successfully",

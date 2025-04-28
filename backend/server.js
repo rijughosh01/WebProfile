@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 app.use(postsRoutes);
 app.use(userRoutes);
-app.use(express.static("uploads"));
+app.use("/uploads", express.static("uploads"));
 
 const start = async () => {
   const connectDB = await mongoose.connect(
@@ -20,7 +20,7 @@ const start = async () => {
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      poolSize: 10,
+      maxPoolSize: 10,
     }
   );
 

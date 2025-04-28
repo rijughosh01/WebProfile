@@ -10,7 +10,6 @@ export const activeCheck = async (req, res) => {
   });
 };
 
-
 export const createPost = async (req, res) => {
   const { token } = req.body;
   try {
@@ -21,8 +20,8 @@ export const createPost = async (req, res) => {
     const post = new Post({
       userId: user._id,
       body: req.body.body,
-      media: req.file != undefined ? req.file.filename : "",
-      fileType: req.file != undefined ? req.file.mimetype.split("/")[1] : "",
+      media: req.file ? `uploads/${req.file.filename}` : "",
+      fileType: req.file ? req.file.mimetype.split("/")[1] : "",
     });
     await post.save();
     return res.status(200).json({
@@ -79,7 +78,7 @@ export const commentPost = async (req, res) => {
     if (!post) {
       return res.status(404).json({ error: "Post not found" });
     }
-    const comment = new Comment ({
+    const comment = new Comment({
       userId: user._id,
       postId: post._id,
       body: commentBody,
