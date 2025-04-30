@@ -12,7 +12,6 @@ app.use(cors());
 app.use(express.json());
 app.use(postsRoutes);
 app.use(userRoutes);
-app.use("/uploads", express.static("uploads"));
 
 const start = async () => {
   const connectDB = await mongoose.connect(

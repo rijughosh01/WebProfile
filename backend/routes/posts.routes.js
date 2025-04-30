@@ -10,22 +10,12 @@ import {
   increment_likes,
 } from "../controllers/posts.controller.js";
 import multer from "multer";
+import { storage } from "../config/cloudinary.js"; 
 
 const router = Router();
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads/");
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + "-" + file.originalname);
-  },
-});
-const upload = multer({ storage: storage });
+const upload = multer({ storage });
 
 router.route("/").get(activeCheck);
-
-
 router.route("/post").post(upload.single("media"), createPost);
 router.route("/posts").get(getAllPosts);
 router.route("/delete_post").delete(deletePost);

@@ -13,19 +13,22 @@ export const activeCheck = async (req, res) => {
 export const createPost = async (req, res) => {
   const { token } = req.body;
   try {
-    const user = await User.findOne({ token: token });
+    const user = await User.findOne({ token });
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
+
     const post = new Post({
       userId: user._id,
       body: req.body.body,
-      media: req.file ? `uploads/${req.file.filename}` : "",
-      fileType: req.file ? req.file.mimetype.split("/")[1] : "",
+      media: req.file ? req.file.path : "",
     });
+
     await post.save();
+
     return res.status(200).json({
       message: "Post created successfully",
+      post,
     });
   } catch (error) {
     return res.status(500).json({ message: error.message });
