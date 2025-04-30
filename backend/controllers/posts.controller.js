@@ -3,6 +3,7 @@ import Profile from "../models/profile.model.js";
 import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import Comment from "../models/comments.model.js";
+import { cloudinary } from "../config/cloudinary.js";
 
 export const activeCheck = async (req, res) => {
   return res.status(200).json({
@@ -13,22 +14,33 @@ export const activeCheck = async (req, res) => {
 export const createPost = async (req, res) => {
   const { token } = req.body;
   try {
-    const user = await User.findOne({ token });
+    const user = await User.findOne({ token: token });
     if (!user) {
       return res.status(404).json({ error: "User not found" });
+    }
+
+    let mediaUrl = "";
+    let fileType = "";
+
+    if (req.file) {
+      const uploadedMedia = await cloudinary.uploader.upload(req.file.path, {
+        folder: "posts_media",
+        resource_type: "auto",
+      });
+      mediaUrl = uploadedMedia.secure_url;
+      fileType = uploadedMedia.format;
     }
 
     const post = new Post({
       userId: user._id,
       body: req.body.body,
-      media: req.file ? req.file.path : "",
+      media: mediaUrl,
+      fileType: fileType,
     });
 
     await post.save();
-
     return res.status(200).json({
       message: "Post created successfully",
-      post,
     });
   } catch (error) {
     return res.status(500).json({ message: error.message });

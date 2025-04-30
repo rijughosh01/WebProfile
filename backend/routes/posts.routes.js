@@ -10,8 +10,7 @@ import {
   increment_likes,
 } from "../controllers/posts.controller.js";
 import multer from "multer";
-import { storage } from "../config/cloudinary.js"; 
-
+import { storage } from "../config/cloudinary.js";
 const router = Router();
 const upload = multer({ storage });
 

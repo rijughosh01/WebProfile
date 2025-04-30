@@ -15,19 +15,10 @@ import {
   getUserProfileAndBasedOnUsername,
 } from "../controllers/user.controller.js";
 import multer from "multer";
+import { storage } from "../config/cloudinary.js";
 
 const router = Router();
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads/");
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + "-" + file.originalname);
-  },
-});
-
-const upload = multer({ storage: storage });
+const upload = multer({ storage });
 
 router
   .route("/update_profile_picture")
@@ -44,6 +35,8 @@ router.route("/user/send_connection_request").post(sendConnectionRequest);
 router.route("/user/getConnectionRequests").get(getMyConnectionRequests);
 router.route("/user/user_connection_request").get(whatAreMyConnections);
 router.route("/user/accept_connection_request").post(acceptConnectionRequest);
-router.route("/user/get_profile_based_on_username").get(getUserProfileAndBasedOnUsername)
+router
+  .route("/user/get_profile_based_on_username")
+  .get(getUserProfileAndBasedOnUsername);
 
 export default router;

@@ -8,6 +8,7 @@ import Post from "../models/posts.model.js";
 import ConnectionRequest from "../models/connections.model.js";
 import sharp from "sharp";
 import path from "path";
+import { cloudinary } from "../config/cloudinary.js"; 
 
 const convertUserDataToPDF = async (userData) => {
   const doc = new PDFDocument({ margin: 50 });
@@ -155,10 +156,20 @@ export const uplodeProfilePicture = async (req, res) => {
   try {
     const user = await User.findOne({ token: token });
     if (!user) return res.status(404).json({ message: "User not found" });
-    user.profilePicture = req.file ? `uploads/${req.file.filename}` : "";
+
+    if (req.file) {
+      const uploadedImage = await cloudinary.uploader.upload(req.file.path, {
+        folder: "profile_pictures",
+      });
+      user.profilePicture = uploadedImage.secure_url;
+    } else {
+      user.profilePicture = "";
+    }
+
     await user.save();
     return res.json({
       message: "Profile picture uploaded successfully",
+      profilePicture: user.profilePicture,
     });
   } catch (error) {
     return res.status(500).json({ message: error.message });
