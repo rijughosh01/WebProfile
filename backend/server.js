@@ -10,8 +10,8 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(postsRoutes);
-app.use(userRoutes);
+app.use("/api/posts", postsRoutes);
+app.use("/api/users", userRoutes);
 
 const start = async () => {
   const connectDB = await mongoose.connect(
