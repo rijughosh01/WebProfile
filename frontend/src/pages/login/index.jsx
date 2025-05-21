@@ -19,6 +19,7 @@ function LoginComponent() {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [name, setName] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (authState.loggedIn) {
@@ -36,16 +37,24 @@ function LoginComponent() {
     dispath(emptyMessage());
   }, [userLoginMethod]);
 
-  const handleRegister = () => {
-    console.log("Registering user...");
-    dispath(registerUser({ username, password, email, name }));
+  const handleRegister = async () => {
+    setLoading(true);
+    try {
+      await dispath(registerUser({ username, password, email, name }));
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleLogin = async () => {
-    console.log("Logging in user...");
-    await dispath(loginUser({ email, password }));
-    if (localStorage.getItem("token")) {
-      router.push("/dashboard");
+    setLoading(true);
+    try {
+      await dispath(loginUser({ email, password }));
+      if (localStorage.getItem("token")) {
+        router.push("/dashboard");
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -70,12 +79,14 @@ function LoginComponent() {
                     className={styles.inputField}
                     type="text"
                     placeholder="Username"
+                    disabled={loading}
                   />
                   <input
                     onChange={(e) => setName(e.target.value)}
                     className={styles.inputField}
                     type="text"
                     placeholder="Name"
+                    disabled={loading}
                   />
                 </div>
               )}
@@ -84,25 +95,39 @@ function LoginComponent() {
                 className={styles.inputField}
                 type="text"
                 placeholder="Email"
+                disabled={loading}
               />
               <input
                 onChange={(e) => setPassword(e.target.value)}
                 className={styles.inputField}
                 type="text"
                 placeholder="Password"
+                disabled={loading}
               />
 
               <div
                 onClick={() => {
-                  if (userLoginMethod) {
-                    handleLogin();
-                  } else {
-                    handleRegister();
+                  if (!loading) {
+                    if (userLoginMethod) {
+                      handleLogin();
+                    } else {
+                      handleRegister();
+                    }
                   }
                 }}
                 className={styles.buttonWithOutline}
+                style={{
+                  opacity: loading ? 0.6 : 1,
+                  pointerEvents: loading ? "none" : "auto",
+                }}
               >
-                <p> {userLoginMethod ? "Sign In" : "Sign UP"} </p>
+                <p>
+                  {loading
+                    ? "Checking your info, one moment..."
+                    : userLoginMethod
+                    ? "Sign In"
+                    : "Sign UP"}
+                </p>
               </div>
             </div>
           </div>
@@ -114,9 +139,14 @@ function LoginComponent() {
             )}
             <div
               onClick={() => {
-                setUserLoginMethod(!userLoginMethod);
+                if (!loading) setUserLoginMethod(!userLoginMethod);
               }}
-              style={{ color: "black", textAlign: "center" }}
+              style={{
+                color: "black",
+                textAlign: "center",
+                opacity: loading ? 0.6 : 1,
+                pointerEvents: loading ? "none" : "auto",
+              }}
               className={styles.buttonWithOutline}
             >
               <p> {userLoginMethod ? "Sign Up" : "Sign In"} </p>
